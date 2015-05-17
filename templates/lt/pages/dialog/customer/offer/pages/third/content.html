@@ -1,0 +1,108 @@
+<div class="info">{{if $data}}
+<div class="short">
+	<div class="image"><img src="${$data.find('image').text()}" /></div>
+	<div class="small-details">
+		<div class="type ${$data.find('typename').text().toLowerCase().replace(' ', '-')}"><span class="icon-small"></span>Property Type: <strong>${$data.find('typename').text()}</strong></div>
+		<div class="units"><span class="icon-small"></span>Total Units in Property: <strong>${$data.find('units').text()}</strong></div>
+	</div>
+	<div class="actions">
+		<div class="phone"><span class="icon"></span>Call: ${$data.find('phone').text()}</div>
+		<div class="ability"><span class="icon"></span><a rel="${$data.find('productid').text()}" href="javascript:;">Check Ability</a></div>
+		<div class="details"><span class="icon"></span><a href="/product/view?id=${$data.find('productid').text()}">View Property Details</a></div>
+	</div>
+</div>
+<div class="long">
+	<div class="infoarea"></div>
+	<div>
+		<table cellspacing="0" cellpadding="10" border="0" width="100%">
+			<tr>
+				<th>Name</th>
+				<th>Beds</th>
+				<th>Bath</th>
+				<th>Sq ft</th>
+				<th>Price</th>
+				<th>Select</th>
+			</tr>{{if $data.find('items')}}
+			{{each(i, item) $data.find('items').find('item')}}
+			<tr>
+				<td class="lighter first">${$(item).find('name').text()}</td>
+				<td>${$(item).find('beds').text()}</td>
+				<td>${$(item).find('bath').text()}</td>
+				<td>${$(item).find('sq_fits').text()}</td>
+				<td>&#36;<span class="price">${$(item).find('price').text()}</span></td>
+				<td class="last"><input type="checkbox" name="unit[]" value="${$(item).find('id').text()}" /></td>
+			</tr>
+			{{/each}}
+			{{/if}}
+		</table>
+	</div>
+	<div class="right"><input type="image" class="btn-show-all" src="/templates/default/css/images/pixel-trans.gif" value="Show All" /></div>
+	<div class="right"><input type="image" class="btn-hide-all" src="/templates/default/css/images/pixel-trans.gif" value="Hide All" /></div>
+	<div class="clear"></div>
+	<div class="item">
+		<div class="title">Advertised price:</div>
+		<div class="value">&#36;<span id="advertised-price"></span></div>
+		<div class="clear"></div>
+	</div>
+	<div class="item">
+		<div class="title">Your offer price:</div>
+		<div class="value"><b>&#36;${$data.form.offer}</b></div>
+		<div class="clear"></div>
+	</div>
+	<hr class="light" />
+	<div class="item">
+		<div class="title">From:</div>
+		<div class="value"><b>${$data.form.name}</b></div>
+		<div class="clear"></div>
+	</div>
+	<div class="item">
+		<div class="title">Contact Phone Number:</div>
+		<div class="value"><b>${$data.customer.find('phone').text()}</b></div>
+		<div class="clear"></div>
+	</div>
+	<hr class="light" />
+	<div class="item">
+		<div class="title">Expected Move in Date:</div>
+		<div class="value"><b>{{if $data.form.day}}${$data.form.day}/${$data.form.month}/${$data.form.year}{{/if}}</b></div>
+		<div class="clear"></div>
+	</div>
+	<div class="item">
+		<div class="title">Expected Term of Lease:</div>
+		<div class="value"><b>${$data.form.term}</b> months</div>
+		<div class="clear"></div>
+	</div>
+	<div class="item">
+		<div class="title">Message to LandLord:</div>
+		<div class="value">${$data.form.content}</div>
+		<div class="clear"></div>
+	</div>
+	<hr class="light" />
+	<div class="additional">
+	By submiting your offer, neither you or the landlord are obligated to each other and additional terms and conditions will be negotiated between you and the landlord directly at the time a lease is signed. You are not under obligation to rent this apartment.
+	</div>
+	<hr class="light" />
+	<div>
+		<div class="offer-bottom-buttons visible">
+			<ul>
+				<li><a class="go-back" href="javascript:;">Go back</a></li>
+				<li><div class="separator"></div></li>
+				<li><a class="cancel" href="javascript:;">Cancel</a></li>
+				<li><div class="separator"></div></li>
+				<li><input class="btn-submit-offer" type="image" value="Submit Offer" src="/templates/default/css/images/pixel-trans.gif" /></li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div class="offer-bottom-buttons hidden">
+			<ul>
+				<li><a class="close-window" href="javascript:;">Close window</a></li>
+				<li><div class="separator"></div></li>
+				<li><input class="btn-view-my-messages" type="image" value="View My Messages" src="/templates/default/css/images/pixel-trans.gif" /></li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="clear"></div>
+{{/if}}</div>
+<div class="list"></div>

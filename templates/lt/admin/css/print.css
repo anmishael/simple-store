@@ -1,0 +1,10 @@
+#header { display: none; }
+#topmenu { display: none; }
+#user-details { display: none; }
+#dialog { display: none; }
+.links-list { display: none; }
+h2 { display: none; }
+.no-print { display: none; }
+.copyright { display: none; }
+table.product-list tr th { background: #cccccc; border: 1px solid #cccccc; }
+table.product-list tr td { border: 1px solid #cccccc; }

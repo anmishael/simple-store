@@ -1,0 +1,45 @@
+<div class="info">{{if $data}}
+<div class="short">
+	<div class="image"><img src="${$data.find('image').text()}" /></div>
+	<div class="small-details">
+		<div class="type ${$data.find('typename').text().toLowerCase().replace(' ', '-')}"><span class="icon-small"></span>Property Type: <strong>${$data.find('typename').text()}</strong></div>
+		<div class="units"><span class="icon-small"></span>Total Units in Property: <strong>${$data.find('units').text()}</strong></div>
+	</div>
+	<div class="actions">
+		<div class="phone"><span class="icon"></span>Call: ${$data.find('phone').text()}</div>
+		<div class="ability"><span class="icon"></span><a rel="${$data.find('productid').text()}" href="javascript:;">Check Ability</a></div>
+		<div class="details"><span class="icon"></span><a href="/product/view?id=${$data.find('productid').text()}">View Property Details</a></div>
+	</div>
+</div>
+<div class="long">
+	<div class="infoarea">${Settings.get('INFO_CUSTOMER_OFFER_DEFAULT')}</div>
+	<div>
+		<table cellspacing="0" cellpadding="10" border="0" width="100%">
+			<tr>
+				<th>Name</th>
+				<th>Beds</th>
+				<th>Bath</th>
+				<th>Sq ft</th>
+				<th>Price</th>
+				<th>Select</th>
+			</tr>{{if $data.find('items')}}
+			{{each(i, item) $data.find('items').find('item')}}
+			<tr>
+				<td class="lighter first">${$(item).find('name').text()}</td>
+				<td>${$(item).find('beds').text()}</td>
+				<td>${$(item).find('bath').text()}</td>
+				<td>${$(item).find('sq_fits').text()}</td>
+				<td>&#36;${$(item).find('price').text()}</td>
+				<td class="last"><input type="checkbox" id="offer-first-unit-${$(item).find('id').text()}" name="unit[]" value="${$(item).find('id').text()}" /></td>
+			</tr>
+			{{/each}}
+			{{/if}}
+		</table>
+	</div>
+	<div class="right">
+		<input type="image" class="btn-continue" value="Continue" src="/templates/default/css/images/pixel-trans.gif" />
+	</div>
+</div>
+<div class="clear"></div>
+{{/if}}</div>
+<div class="list"></div>

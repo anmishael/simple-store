@@ -1,0 +1,159 @@
+<div class="info">{{if $data}}
+<div class="short">
+	<div class="image"><img src="${$data.find('image').text()}" /></div>
+	<div class="small-details">
+		<div class="type ${$data.find('typename').text().toLowerCase().replace(' ', '-')}"><span class="icon-small"></span>Property Type: <strong>${$data.find('typename').text()}</strong></div>
+		<div class="units"><span class="icon-small"></span>Total Units in Property: <strong>${$data.find('units').text()}</strong></div>
+	</div>
+	<div class="actions">
+		<div class="phone"><span class="icon"></span>Call: ${$data.find('phone').text()}</div>
+		<div class="ability"><span class="icon"></span><a rel="${$data.find('productid').text()}" href="javascript:;">Check Ability</a></div>
+		<div class="details"><span class="icon"></span><a href="/product/view?id=${$data.find('productid').text()}">View Property Details</a></div>
+	</div>
+</div>
+<div class="long">
+	<div class="infoarea"></div>
+	<div>
+		<table cellspacing="0" cellpadding="10" border="0" width="100%">
+			<tr>
+				<th>Name</th>
+				<th>Beds</th>
+				<th>Bath</th>
+				<th>Sq ft</th>
+				<th>Price</th>
+				<th>Select</th>
+			</tr>{{if $data.find('items')}}
+			{{each(i, item) $data.find('items').find('item')}}
+			<tr>
+				<td class="lighter first">${$(item).find('name').text()}</td>
+				<td>${$(item).find('beds').text()}</td>
+				<td>${$(item).find('bath').text()}</td>
+				<td>${$(item).find('sq_fits').text()}</td>
+				<td>&#36;<span class="price">${$(item).find('price').text()}</span></td>
+				<td class="last"><input type="checkbox" id="offer-second-unit-${$(item).find('id').text()}" name="unit[]" value="${$(item).find('id').text()}" /></td>
+			</tr>
+			{{/each}}
+			{{/if}}
+		</table>
+	</div>
+	<div class="right"><input type="image" class="btn-show-all" src="/templates/default/css/images/pixel-trans.gif" value="Show All" /></div>
+	<div class="right"><input type="image" class="btn-hide-all" src="/templates/default/css/images/pixel-trans.gif" value="Hide All" /></div>
+	<div class="clear"></div>
+	<div>
+		<p>Make your best offer stand out by setting a price that is fair for you and the landlord.</p>
+		<p>Be reasonable in your offer so that the landlord will accept it.</p>
+		<p><strong>This offer will only be valid for 1 week.</strong></p>
+	</div>
+	<hr class="light" />
+	<div class="item">
+		<div class="title">Advertised price:</div>
+		<div class="value">$<span id="advertised-price"></span></div>
+		<div class="clear"></div>
+	</div>
+	<div class="item">
+		<div class="title">Your offer price:</div>
+		<div class="value"><span class="edit nohide" id="offer-second-content-span-offer">$<input type="text" name="offer" value="" /></span></div>
+		<div class="clear"></div>
+	</div>
+	<hr class="light" />
+	<div class="item">
+		<div class="title">From: <div class="right">
+			{{if $data.customer && $data.customer.find('cid').text()}}<div class="icon-tenant-small"></div><div class="icon-not-signed-small hidden"></div>{{else}}<div class="icon-tenant-small hidden"></div><div class="icon-not-signed-small"></div>{{/if}}
+			</div>
+		</div>
+		{{if $data.customer && $data.customer.find('cid').text()}}
+			<div class="value">
+				<span class="view" id="offer-second-content-span-user"><strong>${$data.customer.find('name_first').text()} & ${$data.customer.find('name_last').text()}</strong>
+			 	&nbsp; <a id="offer-second-content-user" href="javascript:;">Edit</a>
+				</span>
+				<div class="edit"><input type="text" value="${$data.customer.find('name_first').text()} ${$data.customer.find('name_last').text()}" name="name"></div>
+			</div>
+			{{else}}
+			<div class="value hidden" id="offer-second-content-loggedin">
+				<span class="view" id="offer-second-content-span-user"><strong>${$data.customer.find('name_first').text()} & ${$data.customer.find('name_last').text()}</strong>
+			 	&nbsp; <a id="offer-second-content-user" href="javascript:;">Edit</a>
+				</span>
+				<div class="edit"><input type="text" value="${$data.customer.find('name_first').text()} ${$data.customer.find('name_last').text()}" name="name"></div>
+			</div>
+			<div class="value" id="offer-second-content-loggedoff">
+				<table cellspacing="0" cellpadding="2" border="0">
+				<tr>
+					<td colspan="2"><span class="small">Please, Sign In or <a id="offer-second-content-register" href="/customer/register">Register</a> before making an Offer </span></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><input type="text" name="username" value="E-mail" title="E-mail" /></td>
+					<td><input type="password" name="password" value="" title="Password" /></td>
+					<td><div class="button-xsmall"><div class="inner"><a id="offer-second-content-login" href="/customer/login">Sign In</a></div></div></td>
+				</tr>
+				</table>
+			</div>
+		{{/if}}
+		<div class="clear"></div>
+	</div>
+	<div class="item">
+		<div class="title">Contact Phone Number:</div>
+		<div class="value">${$data.customer.find('phone').text()}</div>
+		<div class="clear"></div>
+	</div>
+	<hr class="light" />
+	<div class="item">
+		<div class="title">Expected Move in Date:</div>
+		<div class="value">
+			<span class="view"><a id="offer-second-content-date" href="javascript:;">Enter the Date</a></span>
+			<div class="edit">
+			<table class="expected">
+				<tr>
+					<td>
+					<select class="lighter" style="width: 50px;" id="offer-form-expacted-day-all" name="day">{{each(k,v) $data.all_days}}
+					<option value="${v}">${v}</option>
+					{{/each}}</select>
+					</td>
+					<td>
+						<select class="lighter" style="width: 50px;" id="checkability-form-expacted-month-all" name="month">{{each(k,v) $data.all_months}}
+						<option value="${k+1}">${v}</option>
+						{{/each}}</select>
+					</td>
+				<td>
+					<select class="lighter" style="width: 50px;" id="checkability-form-expacted-year-all" name="year">{{each(k,v) $data.all_years}}
+					<option value="${v}">${v}</option>
+					{{/each}}</select></td></tr>
+				</table>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="item">
+		<div class="title">Expected Term of Lease:</div>
+		<div class="value">
+			<span class="view"><a id="offer-second-content-term" href="javascript:;">Enter the Period</a></span>
+			<div class="edit"><input type="text" name="term" /></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="item">
+		<div class="title">Message to LandLord:</div>
+		<div class="value">
+			<span class="view"><a id="offer-second-content-message" href="javascript:;">Add Message to LandLord</a></span>
+			<div class="edit"><textarea name="content" rows="6" cols="42"></textarea></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<hr class="light" />
+	<div>
+		<div class="offer-bottom-buttons">
+			<ul>
+				<li><a class="another-floorplan" href="javascript:;">Choose another floorplan</a></li>
+				<li><div class="separator"></div></li>
+				<li><a class="cancel" href="javascript:;">Cancel</a></li>
+				<li><div class="separator"></div></li>
+				<li><input class="btn-review-offer" type="image" value="Review Offer" src="/templates/default/css/images/pixel-trans.gif" /></li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="clear"></div>
+{{/if}}</div>
+<div class="list"></div>

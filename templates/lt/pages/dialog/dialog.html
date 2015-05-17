@@ -1,0 +1,14 @@
+<div class="window"><form id="dialog-form" action="" method="post">
+	<div class="wrapper">
+		<div class="header">
+			<div class="right">
+				<a href="" class="btn-close"><span class="title">close</span></a>
+			</div>
+			<div class="left"><h3>{{if $data}}${$data.title}{{/if}}</h3></div>
+			<div class="clear"></div>
+		</div>
+		<hr class="brown" />
+		<div class="content">{{if $data}}${$data.content}{{/if}}</div>
+	</div>
+	<div class="footer">{{if $data}}${$data.footer}{{/if}}</div></form>
+</div>

@@ -1,0 +1,5 @@
+<div>
+<div class="inner">
+<div class="icon"></div>{{if $data}}<a href="/product/view?id=${$data.find('productid').text()}">${$data.find('productname').text()}, <span class="small">${$data.find('cityname').text()} ${$data.find('statename').text()} ${$data.find('zip').text()}</span></a>{{/if}}
+</div>
+</div>

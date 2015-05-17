@@ -1,0 +1,76 @@
+<div class="info">{{if $data}}
+<div class="short">
+	<div class="image"><img src="${$data.find('image').text()}" /></div>
+	<div class="small-details">
+		<div class="type ${$data.find('typename').text().toLowerCase().replace(' ', '-')}"><span class="icon-small"></span>Property Type: <strong>${$data.find('typename').text()}</strong></div>
+		<div class="units"><span class="icon-small"></span>Total Units in Property: <strong>${$data.find('units').text()}</strong></div>
+	</div>
+	<div class="actions">
+		<div class="phone"><span class="icon"></span>Call: ${$data.find('phone').text()}</div>
+		<div class="ability"><span class="icon"></span><a rel="${$data.find('productid').text()}" href="javascript:;">Check Ability</a></div>
+		<div class="details"><span class="icon"></span><a href="/product/view?id=${$data.find('productid').text()}">View Property Details</a></div>
+	</div>
+</div>
+<div class="long">
+	<div class="infoarea">${Settings.get('INFO_CUSTOMER_CHECK_ABILITY')}</div>
+	<div class="item">
+		<div class="title">From:</div>
+		{{if $data.customer && $data.customer.find('cid').text()}}
+		<div class="value">
+			<input type="text" name="name" value="${$data.customer.find('name_first').text()} ${$data.customer.find('name_last').text()}" />
+			<input type="text" name="email" value="${$data.customer.find('email').text()}" />
+		</div>
+		{{else}}
+		<div class="value">
+			<input type="text" name="name" value="" />
+			<input type="text" name="email" value="" />
+		</div>
+		{{/if}}
+		<div class="clear"></div>
+	</div>
+	<div class="item">
+		<div class="title">Expected Move in Date:</div>
+		<div class="value">
+			<table class="expected">
+			<tr>
+				<td>
+				<select class="lighter" style="width: 50px;" id="offer-form-expacted-day-all" name="day">{{each(k,v) $data.all_days}}
+				<option value="${v}">${v}</option>
+				{{/each}}</select>
+				</td>
+				<td>
+					<select class="lighter" style="width: 50px;" id="checkability-form-expacted-month-all" name="month">{{each(k,v) $data.all_months}}
+					<option value="${k+1}">${v}</option>
+					{{/each}}</select>
+				</td>
+				<td>
+				<select class="lighter" style="width: 50px;" id="checkability-form-expacted-year-all" name="year">{{each(k,v) $data.all_years}}
+				<option value="${v}">${v}</option>
+				{{/each}}</select></td>
+			</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="item">
+		<div class="title">Expected Term of Lease:</div>
+		<div class="value">
+			<input type="text" name="term" /> months
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="item">
+		<div class="title">Message to LandLord:</div>
+		<div class="value">
+			<textarea name="content" rows="6" cols="42"></textarea>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<input type="hidden" name="pid" value="${$data.find('productid').text()}" />
+	<div class="right">
+		<input type="image" class="btn-continue" value="Continue" src="/templates/default/css/images/pixel-trans.gif" />
+	</div>
+</div>
+<div class="clear"></div>
+{{/if}}</div>
+<div class="list"></div>

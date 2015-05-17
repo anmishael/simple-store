@@ -1,0 +1,41 @@
+#my-box-back {
+    background-color: #000000;
+    opacity: 0.25;
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#my-box {
+    /* margin: 10% auto;*/
+    position: absolute;
+    /* width: 40%;*/
+    /* height: 80%; */
+    left: 30%;
+    top: 20%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 999;
+}
+#my-box .inner-block {
+    margin: 0px auto;
+    padding: 20px;
+}
+.mybox-view .mybox-large { width: 280px; height: 280px; overflow: hidden; }
+.mybox-view .mybox-large .tr .td { vertical-align: middle; text-align: center; }
+#my-box .image-block { width: 100%; }
+#my-box .image-block ul { list-style: none; padding: 0px; margin: 0px; }
+#my-box .image-block ul li { margin: 0px; padding: 0px; vertical-align: middle; text-align: center; }
+#my-box .thumb-block ul { list-style: none; padding: 0px; margin: 0px; }
+#my-box .thumb-block ul li { margin: 0px 6px 6px 0px; padding: 3px; border-radius: 3px; border: 1px solid #bcbcbc; box-shadow: 0px 0px 3px #BCBCBC; vertical-align: middle; display: inline-block; }
+#my-box .thumb-block ul li:hover { box-shadow: 0px 0px 3px #f45302; }
+.arrow { height: 100%; position: absolute; width: 40%; z-index: 9900; }
+.arrow-left { left: 20px; }
+.arrow-right { right: 20px; }
+.arrow-left .icon,
+.arrow-right .icon { width: 40px; height: 62px; position: absolute; top: 50%; margin-top: -31px; }
+.arrow-left .icon { background: transparent url('./images/scroller-arrow.png') no-repeat; left: 10px; }
+.arrow:hover.arrow-left .icon { background-position: 0px -240px; }
+.arrow-right .icon { background: transparent url('./images/scroller-arrow.png') no-repeat scroll 0px -120px; right: 10px; }
+.arrow:hover.arrow-right .icon { background-position: 0px -360px; }

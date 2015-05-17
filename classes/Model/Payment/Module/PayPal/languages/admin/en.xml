@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<translate language="en">
+	<item>
+		<key>api_username</key>
+		<value>API Username</value>
+	</item>
+	<item>
+		<key>api_password</key>
+		<value>API Password</value>
+	</item>
+	<item>
+		<key>api_signature</key>
+		<value>Signature</value>
+	</item>
+	<item>
+		<key>testmode</key>
+		<value>Test Mode (1 - test mode, 0 - real mode)</value>
+	</item>
+</translate>
